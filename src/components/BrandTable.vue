@@ -1,19 +1,34 @@
-<script setup>
+<script>
 import BACKEND_LINK from "@/../assets/config.js"
-import TableRow from "@/components/TableRow.vue";
 
-var offset = 0, limit = 50
+let offset = 0, limit = 50
 
 async function GetBrands() {
   const request = new Request(BACKEND_LINK + "/api/brands/open?offset=" + offset.toString() + "&" + "limit=" + limit.toString(), {
     method: "GET",
-    mode: "no-cors"
   })
   offset += limit
   const body = await fetch(request).then((result) => result.text())
-  console.log(body)
   return JSON.parse(body)
 }
+
+export default {
+  data() {
+    return {
+      brandData: [],
+      loading: false
+    };
+  },
+  async created() {
+    try {
+      this.loading = true
+      this.brandData = await GetBrands()
+      this.loading = false
+    } catch (e) {
+      console.log(e)
+    }
+  }
+};
 
 </script>
 
@@ -28,12 +43,17 @@ async function GetBrands() {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="brand in GetBrands()">
-      <td>{{ brand["name"] }}</td>
-      <td>{{ brand["location"] }}</td>
-      <td>{{ brand["description"] }}</td>
-      <td><a href="{{brand['name']}}">Домашняя страница</a></td>
-    </tr>
+    <template v-if="loading">
+      <h2>loading</h2>
+    </template>
+    <template v-else>
+      <tr v-for="brand in brandData">
+        <td>{{ brand["name"] }}</td>
+        <td>{{ brand["location"] }}</td>
+        <td>{{ brand["description"] }}</td>
+        <td><a href="{{brand['name']}}">Домашняя страница</a></td>
+      </tr>
+    </template>
     </tbody>
   </table>
 </template>
