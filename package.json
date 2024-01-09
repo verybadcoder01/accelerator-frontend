@@ -1,0 +1,20 @@
+{
+  "name": "shvb-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@vue/cli-service": "^5.0.8",
+    "vue": "^3.3.11",
+    "vue-cli": "^2.9.6",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "vite": "^5.0.10"
+  }
+}
