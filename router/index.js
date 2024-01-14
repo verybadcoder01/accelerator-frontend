@@ -1,15 +1,17 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import App from "@/App.vue";
+import Home from "@/views/home.view.vue"
+import BrandWindow from "@/views/brand.view.vue";
 
 const routes = [
     {
-        path: '/',
-        name: 'home',
-        component: App
+        path: "/brand/:name",
+        name: 'brand',
+        component: BrandWindow
     },
     {
-        path: "/:catchAll(.*)",
-        redirect: '/',
+        path: '/',
+        name: 'home',
+        component: Home
     }
 ]
 

@@ -8,8 +8,8 @@ async function GetBrands() {
     method: "GET",
   })
   offset += limit
-  const body = await fetch(request).then((result) => result.text())
-  return JSON.parse(body)
+  const body = await fetch(request);
+  return await body.json()
 }
 
 export default {
@@ -19,10 +19,22 @@ export default {
       loading: false
     };
   },
+  methods: {
+    url: async function (item) {
+      const request = new Request(BACKEND_LINK + "/api/brands/get_brand_by_name?name=" + item, {
+        method: "GET"
+      })
+      const body = await fetch(request).then((resp) => resp.text())
+      return "brand/" + body
+    }
+  },
   async created() {
     try {
       this.loading = true
       this.brandData = await GetBrands()
+      for (let brand of this.brandData){
+        brand.to = await this.url(brand.name)
+      }
       this.loading = false
     } catch (e) {
       console.log(e)
@@ -48,10 +60,10 @@ export default {
     </template>
     <template v-else>
       <tr v-for="brand in brandData">
-        <td>{{ brand["name"] }}</td>
-        <td>{{ brand["location"] }}</td>
-        <td>{{ brand["description"] }}</td>
-        <td><a href="{{brand['name']}}">Домашняя страница</a></td>
+        <td>{{ brand.name }}</td>
+        <td>{{ brand.location }}</td>
+        <td>{{ brand.description }}</td>
+        <td><router-link :to="brand.to">Домашняя страница</router-link></td>
       </tr>
     </template>
     </tbody>
