@@ -6,10 +6,14 @@
 <template>
   <div id="btnDiv">
     <button id="regBtn" class="coolbutton" role="button">
-      Зарегестрироваться
+      <router-link to="/register">
+        Зарегестрироваться
+      </router-link>
     </button>
     <button id="signBtn" class="coolbutton" role="button">
-      Войти
+      <router-link to="/login">
+        Войти
+      </router-link>
     </button>
   </div>
 </template>
