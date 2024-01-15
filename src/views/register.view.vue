@@ -1,5 +1,5 @@
 <script>
-import BACKEND_LINK from "../../assets/config.js";
+import config from "../../assets/config.js";
 
 export default {
   data() {
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     async Register() {
-      const request = new Request(BACKEND_LINK + "/api/users/register", {
+      const request = new Request(config.BACKEND_LINK + "/api/users/register", {
         method: "POST",
         body: JSON.stringify({
           "name": this.name,
@@ -26,6 +26,7 @@ export default {
         alert(resp.status)
       } else {
         alert("Успешно!")
+        window.location.href = '/'
       }
     }
   }

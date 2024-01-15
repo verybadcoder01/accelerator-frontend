@@ -1,5 +1,5 @@
 <script>
-import BACKEND_LINK from "../../assets/config.js";
+import config from "../../assets/config.js";
 
 export default {
   data() {
@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     async GetByName() {
-      const getBrandReq = new Request(BACKEND_LINK + "/api/brands/get_brand_by_id?id=" + window.location.href.split('/').at(-1), {
+      const getBrandReq = new Request(config.BACKEND_LINK + "/api/brands/get_brand_by_id?id=" + window.location.href.split('/').at(-1), {
         method: "GET"
       })
       const resp = await fetch(getBrandReq)

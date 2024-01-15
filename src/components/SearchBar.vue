@@ -1,5 +1,5 @@
 <script>
-import BACKEND_LINK from "../../assets/config.js";
+import config from "../../assets/config.js";
 import url from "./BrandTable.vue"
 
 export default {
@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     async SearchByName() {
-      const request = new Request(BACKEND_LINK + "/api/brands/get_brand_by_name?name=" + this.value, {
+      const request = new Request(config.BACKEND_LINK + "/api/brands/get_brand_by_name?name=" + this.value, {
         method: "GET"
       })
       const res = await fetch(request)

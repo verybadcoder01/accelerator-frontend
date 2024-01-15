@@ -1,10 +1,10 @@
 <script>
-import BACKEND_LINK from "@/../assets/config.js"
+import config from "@/../assets/config.js"
 
 let offset = 0, limit = 50
 
 async function GetBrands() {
-  const request = new Request(BACKEND_LINK + "/api/brands/open?offset=" + offset.toString() + "&" + "limit=" + limit.toString(), {
+  const request = new Request(config.BACKEND_LINK + "/api/brands/open?offset=" + offset.toString() + "&" + "limit=" + limit.toString(), {
     method: "GET",
   })
   offset += limit
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     url: async function (item) {
-      const request = new Request(BACKEND_LINK + "/api/brands/get_brand_by_name?name=" + item, {
+      const request = new Request(config.BACKEND_LINK + "/api/brands/get_brand_by_name?name=" + item, {
         method: "GET"
       })
       const body = await fetch(request).then((resp) => resp.text())

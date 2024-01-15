@@ -1,5 +1,5 @@
 <script>
-import BACKEND_LINK from "../../assets/config.js";
+import config from "../../assets/config.js";
 
 export default {
   data() {
@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     async Login() {
-      const request = new Request(BACKEND_LINK + "/api/users/login", {
+      const request = new Request(config.BACKEND_LINK + "/api/users/login", {
         method: "POST",
         body: JSON.stringify({
           "email": this.login,
@@ -22,6 +22,9 @@ export default {
         alert("Неверный пароль!")
       } else if (resp.status === 200) {
         alert("Успешно!")
+        const session = await resp.json()
+        window.localStorage.setItem('token', session.token)
+        window.location.href = '/'
       } else {
         alert(resp.status)
       }

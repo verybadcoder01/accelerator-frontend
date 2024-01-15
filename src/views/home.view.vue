@@ -2,6 +2,34 @@
 import LoginButton from "@/components/LoginButton.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import BrandTable from "@/components/BrandTable.vue";
+</script>
+
+<script>
+
+import config from "../../assets/config.js";
+
+export default {
+  data() {
+    return {
+      islogin: 0
+    }
+  },
+  methods: {
+    checklogin: async function() {
+      const request = new Request(config.BACKEND_LINK + "/api/users/checklogin", {
+        method: "GET",
+        headers: {
+          Authorization: [window.localStorage.getItem('token')]
+        }
+      })
+      const status = await fetch(request).then((resp) => resp.text())
+      this.islogin = (status === "true")
+    }
+  },
+  async created() {
+    await this.checklogin()
+  }
+}
 
 </script>
 
@@ -10,8 +38,15 @@ import BrandTable from "@/components/BrandTable.vue";
     <div class="flex-child">
       <h1 id="title">Цифровая платформа</h1>
     </div>
-    <div class="flex-child">
+    <div class="flex-child" v-if="islogin===false">
       <LoginButton/>
+    </div>
+    <div v-else>
+      <button>
+        <router-link to="/lk">
+          В личный кабинет
+        </router-link>
+      </button>
     </div>
   </div>
   <SearchBar/>
