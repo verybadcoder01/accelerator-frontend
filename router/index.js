@@ -4,6 +4,7 @@ import BrandWindow from "@/views/brand.view.vue";
 import Register from "@/views/register.view.vue"
 import Login from "@/views/login.view.vue"
 import Cabinet from "@/views/cabinet.view.vue"
+import NewBrand from "@/views/newbrand.view.vue"
 
 const routes = [
     {
@@ -25,6 +26,11 @@ const routes = [
         path: '/lk',
         name: 'lk',
         component: Cabinet
+    },
+    {
+        path: '/lk/add',
+        name: 'add new',
+        component: NewBrand
     },
     {
         path: '/',

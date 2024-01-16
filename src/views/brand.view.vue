@@ -55,13 +55,47 @@ export default {
     <div class="row2">
       <div class="stats">
         <h3>Статистика</h3>
-        <p v-for="stat in brand.statistics">{{ stat.name }} {{ stat.value }} с {{ stat.startPeriod.split('T')[0] }} до
-          {{ stat.endPeriod.split('T')[0] }}</p>
+        <table>
+          <thead>
+          <tr>
+            <th>Название метрики</th>
+            <th>Описание метрики</th>
+            <th>Начало периода</th>
+            <th>Окончание периода</th>
+            <th>Результат</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="stat in brand.statistics">
+            <td>{{ stat.name }}</td>
+            <td>{{ stat.description }}</td>
+            <td>{{ stat.startPeriod.split('T')[0] }}</td>
+            <td>{{ stat.endPeriod.split('T')[0] }}</td>
+            <td>{{ stat.value }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
       <div class="products">
         <h3>Продукты</h3>
-        <p v-for="product in brand.products">{{ product.name }} {{ product.price.lowEnd }}-{{ product.price.highEnd }}
-          {{ product.price.currency }}</p>
+        <table>
+          <thead>
+          <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Цена начинается с, руб.</th>
+            <th>Цена не превышает, руб.</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="product in brand.products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price.lowEnd }}</td>
+            <td>{{ product.price.highEnd }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </template>
@@ -88,5 +122,13 @@ export default {
   position: absolute;
   margin: 0;
   padding: 0;
+}
+
+table {
+  overflow-y: scroll;
+  display: block;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding-left: 10px;
 }
 </style>
