@@ -93,6 +93,9 @@ export default {
             <td>{{ product.description }}</td>
             <td>{{ product.price.lowEnd }}</td>
             <td>{{ product.price.highEnd }}</td>
+            <td v-for="img in product.images">
+              <img :src="img" alt="Photo"/>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -125,10 +128,19 @@ export default {
 }
 
 table {
-  overflow-y: scroll;
+  overflow-y: auto;
   display: block;
   border-radius: 5px;
   margin-top: 10px;
   padding-left: 10px;
+}
+
+td {
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+
+img {
+  width: 32px;
 }
 </style>

@@ -1,3 +1,3 @@
 export default {
-    BACKEND_LINK: "http://91.142.72.169"
+    BACKEND_LINK: "https://back.perun.is57.ru"
 }
