@@ -103,8 +103,8 @@ export default {
 </script>
 
 <template>
-  <button>
-    <router-link to="/">
+  <button class="back">
+    <router-link to="/lk">
       Вернуться
     </router-link>
   </button>
@@ -226,6 +226,7 @@ export default {
 
 .prodinfo {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .oneprod {
@@ -237,6 +238,27 @@ input {
   padding-top: 5px;
   padding-bottom: 5px;
   width: auto;
+}
+
+.back {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-size: 100%;
+  transform: translateZ(0);
+  transition: all .2s, box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 </style>

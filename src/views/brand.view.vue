@@ -39,9 +39,14 @@ export default {
     <h2>Loading, please wait</h2>
   </template>
   <template v-else>
-    <button class="back">
-      <router-link to="/">На главную</router-link>
-    </button>
+    <div class="back">
+      <button class="backbtn">
+        <router-link to="/">На главную</router-link>
+      </button>
+      <button class="backbtn">
+        <router-link to="/lk">В личный кабинет</router-link>
+      </button>
+    </div>
     <div class="info">
       <div class="row1">
         <div class="general">
@@ -181,6 +186,9 @@ export default {
   position: fixed;
   top: 10px;
   left: 10px;
+}
+
+.backbtn {
   padding: 10px 20px;
   backface-visibility: hidden;
   background-color: #405cf5;
@@ -196,6 +204,7 @@ export default {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-right: 5px;
 }
 
 table {
