@@ -17,7 +17,7 @@ export default {
     }
   },
   methods: {
-    GetMyBrands: async function () {
+    async GetMyBrands () {
       const request = new Request(config.BACKEND_LINK + "/api/users/get_added_brands", {
         method: "GET",
         headers: {
@@ -31,14 +31,14 @@ export default {
       this.brands = await resp.json()
     }
   },
-  mounted() {
-    this.token = localStorage.getItem('token');
-  },
-  async created() {
+  async mounted() {
     this.loading = true
+    this.token = localStorage.getItem('token');
     await this.GetMyBrands()
-    for (let brand of this.brands){
-      brand.to ??= await brandTable.methods.url(brand.name)
+    if (this.brands != null) {
+      for (let brand of this.brands) {
+        brand.to ??= await brandTable.methods.url(brand.name)
+      }
     }
     this.loading = false
   }
