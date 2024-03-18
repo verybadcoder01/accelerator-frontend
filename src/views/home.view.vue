@@ -57,7 +57,7 @@ export default {
 #app {
   box-sizing: border-box;
   padding: 0;
-  font-family: 'Montserrat', serif;
+  font-family: 'Montserrat', sans-serif;
   max-width: 1500px;
   margin: auto;
   left: 50%;
@@ -95,5 +95,9 @@ export default {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+
+a {
+  text-decoration: none !important;
 }
 </style>
